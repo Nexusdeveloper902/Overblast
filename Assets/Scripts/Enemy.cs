@@ -17,8 +17,10 @@ public class Enemy : MonoBehaviour
     private State currentState;
 
     [SerializeField] private float health = 30;
+    [SerializeField] private int damageAmount = 20;
     void Start()
     {
+        playerTransform = GameObject.FindWithTag("Player").transform;
         playerScript = playerTransform.GetComponent<Player>();
     }
 
@@ -65,7 +67,7 @@ public class Enemy : MonoBehaviour
             lastAttackTime = Time.time;
             if (playerScript != null)
             {
-                playerScript.TakeDamage(1);
+                playerScript.TakeDamage(damageAmount);
             }
         }
     }
