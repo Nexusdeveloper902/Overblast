@@ -1,12 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private float speed;
+    public int health = 100;
 
+    public event EventHandler OnHealthChanged;
+    
+    
     void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            health--;
+           OnHealthChanged?.Invoke(this, EventArgs.Empty);
+        }
+        Movement();
+    }
+    
+    void Movement()
     {
         Vector3 direction = Vector3.zero;
 
@@ -19,6 +34,6 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
             direction += Vector3.left;
 
-        transform.position += direction.normalized * speed * Time.deltaTime;
+        transform.position += speed * Time.deltaTime * direction.normalized;
     }
 }
