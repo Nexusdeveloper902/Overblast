@@ -13,11 +13,6 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            health--;
-           OnHealthChanged?.Invoke(this, EventArgs.Empty);
-        }
         Movement();
     }
     
@@ -36,4 +31,11 @@ public class Player : MonoBehaviour
 
         transform.position += speed * Time.deltaTime * direction.normalized;
     }
+    
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
+        OnHealthChanged?.Invoke(this, EventArgs.Empty);
+    }
+
 }
