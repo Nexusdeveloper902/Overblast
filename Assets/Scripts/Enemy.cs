@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     private enum State { Idle, Chase, Attack }
     private State currentState;
 
+    [SerializeField] private float health = 30;
     void Start()
     {
         playerScript = playerTransform.GetComponent<Player>();
@@ -66,6 +67,15 @@ public class Enemy : MonoBehaviour
             {
                 playerScript.TakeDamage(1);
             }
+        }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
