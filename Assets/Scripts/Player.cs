@@ -36,6 +36,10 @@ public class Player : MonoBehaviour
     {
         health -= amount;
         OnHealthChanged?.Invoke(this, EventArgs.Empty);
+        if (health <= 0)
+        {
+            Time.timeScale = 0f;
+        }
     }
 
 }
