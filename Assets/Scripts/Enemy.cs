@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private float chaseRange = 50f;
+    [SerializeField] private float chaseRange = 100000000f;
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float moveSpeed = 2.3f;
     [SerializeField] private float attackCooldown = 1.0f;

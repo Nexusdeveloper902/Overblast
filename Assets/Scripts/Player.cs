@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public static Player Instance;
     
-    [SerializeField] private float speed;
+    public float speed = 5;
     public int health = 100;
 
     public event EventHandler OnHealthChanged;
@@ -49,4 +49,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SpeedIncrease(float amount)
+    {
+        speed += amount;
+        StartCoroutine(SpeedIncreaseTime());
+    }
+
+    IEnumerator SpeedIncreaseTime()
+    {
+        yield return new WaitForSeconds(10f);
+        speed = 5;
+    }
 }
