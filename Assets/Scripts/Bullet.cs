@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
+        damage = damage + Player.Instance.damageToIncrease;
         StartCoroutine(TimerToDespawn());
     }
 

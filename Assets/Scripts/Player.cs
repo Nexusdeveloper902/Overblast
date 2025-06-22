@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     
     public float speed = 5;
     public int health = 100;
+    public float damageToIncrease;
 
     public event EventHandler OnHealthChanged;
     
@@ -59,5 +60,17 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(10f);
         speed = 5;
+    }
+
+    public void DamageIncrease(float amount)
+    {
+        damageToIncrease += amount;
+        StartCoroutine(DamageIncreaseTime());
+    }
+
+    IEnumerator DamageIncreaseTime()
+    {
+        yield return new WaitForSeconds(10f);
+        damageToIncrease = 0;
     }
 }
