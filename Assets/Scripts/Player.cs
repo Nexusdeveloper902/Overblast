@@ -5,11 +5,18 @@ using System;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
+    
     [SerializeField] private float speed;
     public int health = 100;
 
     public event EventHandler OnHealthChanged;
     
+    void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
     
     void Update()
     {

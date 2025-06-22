@@ -35,6 +35,11 @@ public class UI : MonoBehaviour
         healthText.text = player.health.ToString() + "/100";
     }
 
+    public void SetHealthInUI(int health)
+    {
+        healthText.text = health.ToString() + "/100";
+    }
+
     public void SetScoreInUI(int score)
     {
         scoreText.text = score.ToString();
