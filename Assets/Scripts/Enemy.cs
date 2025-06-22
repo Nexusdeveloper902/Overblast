@@ -10,14 +10,23 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float moveSpeed = 2.3f;
     [SerializeField] private float attackCooldown = 1.0f;
 
+
+    private int enemiesToSpawn;
     private float lastAttackTime;
     private Player playerScript;
 
-    private enum State { Idle, Chase, Attack }
+    private enum State
+    {
+        Idle,
+        Chase,
+        Attack
+    }
+
     private State currentState;
 
     [SerializeField] private float health = 30;
     [SerializeField] private int damageAmount = 20;
+
     void Start()
     {
         playerTransform = GameObject.FindWithTag("Player").transform;
@@ -51,7 +60,7 @@ public class Enemy : MonoBehaviour
 
     void Idle()
     {
-        
+
     }
 
     void Chase()
@@ -74,7 +83,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        var enemiesToSpawn = Spawner.Instance.wave;
+        enemiesToSpawn = Spawner.Instance.wave;
         Debug.Log(enemiesToSpawn);
         health -= amount;
         if (health <= 0)
@@ -83,10 +92,15 @@ public class Enemy : MonoBehaviour
             Spawner.Instance.enemiesAlive--;
             if (Spawner.Instance.enemiesAlive == 0)
             {
-                Spawner.Instance.readyForNextWave =  true;
-                Spawner.Instance.SpawnEnemies(enemiesToSpawn);
+                Spawner.Instance.readyForNextWave = true;
+                {
+                    Spawner.Instance.readyForNextWave = false;
+                    Spawner.Instance.WaitBeforeNextWaveFunc(enemiesToSpawn);
+                }
             }
+
             Destroy(gameObject);
         }
     }
+    
 }

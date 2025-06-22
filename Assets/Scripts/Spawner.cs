@@ -40,4 +40,15 @@ public class Spawner : MonoBehaviour
         wave++;
         UI.Instance.SetWaveInUI(wave);
     }
+
+    public void WaitBeforeNextWaveFunc(int enemiesToSpawn)
+    {
+        StartCoroutine(WaitBeforeNextWave(enemiesToSpawn));
+    }
+    
+    IEnumerator WaitBeforeNextWave(int enemiesToSpawn)
+    {
+        yield return new WaitForSeconds(5f);
+        SpawnEnemies(enemiesToSpawn);
+    }
 }
