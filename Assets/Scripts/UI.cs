@@ -8,7 +8,16 @@ public class UI : MonoBehaviour
 {
     [SerializeField] private Player player;
     [SerializeField] private Text healthText;
-    // Start is called before the first frame update
+    [SerializeField] private Text scoreText;
+    
+    public static UI Instance;
+    
+    void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+    
     void Start()
     {
         healthText.text = player.health.ToString() + "/100";
@@ -24,8 +33,9 @@ public class UI : MonoBehaviour
     {
         healthText.text = player.health.ToString() + "/100";
     }
-    void Update()
+
+    public void SetScoreInUI(int score)
     {
-        
+        scoreText.text = score.ToString();
     }
 }
