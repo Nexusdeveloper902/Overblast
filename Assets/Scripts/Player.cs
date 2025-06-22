@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         OnHealthChanged?.Invoke(this, EventArgs.Empty);
         if (health <= 0)
         {
-            Time.timeScale = 0f;
+            GameManager.Instance.GameOver();
         }
     }
 
