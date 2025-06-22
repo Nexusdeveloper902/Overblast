@@ -4,32 +4,40 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public static Spawner Instance;
+    public int enemiesAlive = 0;
+    public int wave = 1;
+    public bool readyForNextWave = false;
+    
     [SerializeField] private GameObject enemyPrefab;
-
-    [SerializeField] private int enemyAmount = 3;
-    // Start is called before the first frame update
+    
+    void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+    
     void Start()
     {
-        for (int i = 0; i < enemyAmount; i++)
-        {
-            StartCoroutine(SpawnerTimer());
-        }
-
+        SpawnEnemies(1);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     IEnumerator SpawnerTimer()
     {
-        while (true)
-        {
             yield return new WaitForSeconds(Random.Range(5f, 10f));
             Vector3 spawnPos = new Vector3(Random.Range(-10f, 10f), Random.Range(-5f, 5f), 0f);
             Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+            enemiesAlive++;
+    }
+    
+    public void SpawnEnemies(int enemyAmount)
+    {
+        for (var i = 0; i < enemyAmount; i++)
+        {
+            StartCoroutine(SpawnerTimer());
         }
+        wave++;
+        UI.Instance.SetWaveInUI(wave);
     }
 }

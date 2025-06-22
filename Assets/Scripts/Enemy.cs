@@ -5,9 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private float chaseRange = 10f;
+    [SerializeField] private float chaseRange = 50f;
     [SerializeField] private float attackRange = 1.5f;
-    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float moveSpeed = 2.3f;
     [SerializeField] private float attackCooldown = 1.0f;
 
     private float lastAttackTime;
@@ -74,10 +74,18 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        var enemiesToSpawn = Spawner.Instance.wave;
+        Debug.Log(enemiesToSpawn);
         health -= amount;
         if (health <= 0)
         {
             GameManager.Instance.AddScore(5);
+            Spawner.Instance.enemiesAlive--;
+            if (Spawner.Instance.enemiesAlive == 0)
+            {
+                Spawner.Instance.readyForNextWave =  true;
+                Spawner.Instance.SpawnEnemies(enemiesToSpawn);
+            }
             Destroy(gameObject);
         }
     }

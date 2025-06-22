@@ -9,6 +9,7 @@ public class UI : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private Text healthText;
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text waveText;
     
     public static UI Instance;
     
@@ -37,5 +38,10 @@ public class UI : MonoBehaviour
     public void SetScoreInUI(int score)
     {
         scoreText.text = score.ToString();
+    }
+
+    public void SetWaveInUI(int wave)
+    {
+        waveText.text = wave.ToString();
     }
 }
