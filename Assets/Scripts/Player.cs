@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public float damageToIncrease;
 
     public event EventHandler OnHealthChanged;
+
+    private bool godMode;
     
     void Awake()
     {
@@ -22,6 +24,15 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movement();
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            godMode = true;
+        }
+
+        if (godMode)
+        {
+            health = 100;
+        }
     }
     
     void Movement()

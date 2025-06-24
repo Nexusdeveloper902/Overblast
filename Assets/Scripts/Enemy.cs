@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float moveSpeed = 2.3f;
     [SerializeField] private float attackCooldown = 1.0f;
-
+    
 
     private int enemiesToSpawn;
     private float lastAttackTime;
@@ -84,23 +84,50 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float amount)
     {
         enemiesToSpawn = Spawner.Instance.wave;
-        Debug.Log(enemiesToSpawn);
         health -= amount;
         if (health <= 0)
         {
-            GameManager.Instance.AddScore(5);
-            Spawner.Instance.enemiesAlive--;
-            if (Spawner.Instance.enemiesAlive == 0)
-            {
-                Spawner.Instance.readyForNextWave = true;
-                {
-                    Spawner.Instance.readyForNextWave = false;
-                    Spawner.Instance.WaitBeforeNextWaveFunc(enemiesToSpawn);
-                }
-            }
-
-            Destroy(gameObject);
+            DeathLogic();
         }
+        
     }
     
+    void DeathLogic()
+    {
+        GameManager.Instance.AddScore(5);
+        Spawner.Instance.enemiesAlive--;
+        if (Spawner.Instance.enemiesAlive == 0)
+        {
+            Spawner.Instance.readyForNextWave = true;
+            {
+                Spawner.Instance.readyForNextWave = false;
+                Spawner.Instance.WaitBeforeNextWaveFunc(enemiesToSpawn);
+                PickUpSpawner.Instance.PickUpsBetweenWaves();
+                RandomDrop();
+            }
+        }
+        Destroy(gameObject);
+    }
+
+    void RandomDrop()
+    {
+        float rand = Random.value; // Random float between 0.0 and 1.0
+
+        if (rand < 0.10f)
+        {
+            PickUpSpawner.Instance.SpawnSpeedPickUp(transform.position); // 10%
+        }
+        else if (rand < 0.25f)
+        {
+            PickUpSpawner.Instance.SpawnHealthPickUp(transform.position); // 15%
+        }
+        else if (rand < 0.40f)
+        {
+            PickUpSpawner.Instance.SpawnDamagePickUp(transform.position); // 15%
+        }
+        // 60% chance: no pickup
+        
+        
+    }
+
 }
