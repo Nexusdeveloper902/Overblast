@@ -8,12 +8,12 @@ public class HealthPickUp : MonoBehaviour
     void  OnTriggerEnter2D(Collider2D other)
     {
         
-        if (other.name == "Player" && Player.Instance.health != 100)
+        if (other.name == "Player" && Player.Instance.health != Player.Instance.maxHealth)
         {
             Player.Instance.health += healthToIncrease;
-            if (Player.Instance.health >= 100)
+            if (Player.Instance.health >= Player.Instance.maxHealth)
             {
-                Player.Instance.health = 100;
+                Player.Instance.health = Player.Instance.maxHealth;
             }
             UI.Instance.SetHealthInUI(Player.Instance.health);
             Destroy(gameObject);

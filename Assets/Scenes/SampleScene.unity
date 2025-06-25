@@ -408,6 +408,9 @@ MonoBehaviour:
   speed: 5
   health: 100
   damageToIncrease: 0
+  xp: 0
+  level: 0
+  maxHealth: 100
 --- !u!114 &348018761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1368,6 +1371,7 @@ MonoBehaviour:
   healthText: {fileID: 1572951058}
   scoreText: {fileID: 2022411724}
   waveText: {fileID: 201973980}
+  maxHealth: 100
 --- !u!4 &1102067198
 Transform:
   m_ObjectHideFlags: 0

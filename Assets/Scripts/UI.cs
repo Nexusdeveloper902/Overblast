@@ -11,6 +11,7 @@ public class UI : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Text waveText;
     
+    public float maxHealth = 100;
     public static UI Instance;
     
     void Awake()
@@ -21,7 +22,7 @@ public class UI : MonoBehaviour
     
     void Start()
     {
-        healthText.text = player.health.ToString() + "/100";
+        healthText.text = player.health.ToString() + "/" + maxHealth.ToString();
         player.OnHealthChanged += HandleHealthChanged;
     }
 
@@ -32,12 +33,12 @@ public class UI : MonoBehaviour
     
     private void HandleHealthChanged(object sender, System.EventArgs e)
     {
-        healthText.text = player.health.ToString() + "/100";
+        healthText.text = player.health.ToString() + "/" + maxHealth.ToString();
     }
 
     public void SetHealthInUI(int health)
     {
-        healthText.text = health.ToString() + "/100";
+        healthText.text = health.ToString() +"/" + maxHealth.ToString();
     }
 
     public void SetScoreInUI(int score)
@@ -48,5 +49,10 @@ public class UI : MonoBehaviour
     public void SetWaveInUI(int wave)
     {
         waveText.text = wave.ToString();
+    }
+
+    public void LevelUpPanel()
+    {
+        
     }
 }

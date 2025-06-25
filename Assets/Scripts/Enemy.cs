@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private int enemiesToSpawn;
     private float lastAttackTime;
     private Player playerScript;
+    [SerializeField] private float xpToIncrease = 1;
 
     private enum State
     {
@@ -96,6 +97,7 @@ public class Enemy : MonoBehaviour
     {
         GameManager.Instance.AddScore(5);
         Spawner.Instance.enemiesAlive--;
+        Player.Instance.AddXp(xpToIncrease);
         if (Spawner.Instance.enemiesAlive == 0)
         {
             Spawner.Instance.readyForNextWave = true;

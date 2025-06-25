@@ -10,6 +10,19 @@ public class Player : MonoBehaviour
     public float speed = 5;
     public int health = 100;
     public float damageToIncrease;
+    public float xp;
+    public float level;
+    private float[] xpTable = new float[]
+    {
+        0f,   // Level 0 (not used)
+        10f,  // Level 1
+        25f,  // Level 2
+        45f,  // Level 3
+        70f,  // Level 4
+        100f  // Level 5 (add more if needed)
+    };
+    
+    public int maxHealth = 100;
 
     public event EventHandler OnHealthChanged;
 
@@ -31,7 +44,7 @@ public class Player : MonoBehaviour
 
         if (godMode)
         {
-            health = 100;
+            health = maxHealth;
         }
     }
     
@@ -83,5 +96,26 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(10f);
         damageToIncrease = 0;
+    }
+
+    public void AddXp(float amount)
+    {
+        xp += amount;
+
+        // Check if XP passed the threshold for the next level
+        if (level < xpTable.Length - 1 && xp >= xpTable[(int)level + 1])
+        {
+            level++;
+            LevelUp();
+        }
+    }
+
+    void LevelUp()
+    {
+        maxHealth += 10;
+        UI.Instance.maxHealth += 10;
+        speed += 2;
+        UI.Instance.SetHealthInUI(health);
+        UI.Instance.LevelUpPanel();
     }
 }
