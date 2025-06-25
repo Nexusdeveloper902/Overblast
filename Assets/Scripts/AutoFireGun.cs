@@ -11,6 +11,7 @@ public class AutoFireGun : MonoBehaviour
     
     void Start()
     {
+        playerTransform = Player.Instance.playerTransform;
         StartCoroutine(Shot());
     }
 

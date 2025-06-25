@@ -7,9 +7,13 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     [SerializeField] private Player player;
-    [SerializeField] private Text healthText;
-    [SerializeField] private Text scoreText;
-    [SerializeField] private Text waveText;
+    [SerializeField] private Text healthTextNum;
+    [SerializeField] private Text scoreTextNum;
+    [SerializeField] private Text waveTextNum;
+    [SerializeField] private GameObject scoreText;
+    [SerializeField] private GameObject waveText;
+    [SerializeField] private GameObject healthText;
+    [SerializeField] private GameObject levelUpPanel;
     
     public float maxHealth = 100;
     public static UI Instance;
@@ -22,7 +26,7 @@ public class UI : MonoBehaviour
     
     void Start()
     {
-        healthText.text = player.health.ToString() + "/" + maxHealth.ToString();
+        healthTextNum.text = player.health.ToString() + "/" + maxHealth.ToString();
         player.OnHealthChanged += HandleHealthChanged;
     }
 
@@ -33,26 +37,46 @@ public class UI : MonoBehaviour
     
     private void HandleHealthChanged(object sender, System.EventArgs e)
     {
-        healthText.text = player.health.ToString() + "/" + maxHealth.ToString();
+        healthTextNum.text = player.health.ToString() + "/" + maxHealth.ToString();
     }
 
     public void SetHealthInUI(int health)
     {
-        healthText.text = health.ToString() +"/" + maxHealth.ToString();
+        healthTextNum.text = health.ToString() +"/" + maxHealth.ToString();
     }
 
     public void SetScoreInUI(int score)
     {
-        scoreText.text = score.ToString();
+        scoreTextNum.text = score.ToString();
     }
 
     public void SetWaveInUI(int wave)
     {
-        waveText.text = wave.ToString();
+        waveTextNum.text = wave.ToString();
     }
 
-    public void LevelUpPanel()
+    public void ShowLevelUpPanel()
     {
-        
+        Time.timeScale = 0f;
+        waveTextNum.gameObject.SetActive(false);
+        healthTextNum.gameObject.SetActive(false);
+        scoreTextNum.gameObject.SetActive(false);
+        waveText.SetActive(false);
+        scoreText.SetActive(false);
+        healthText.SetActive(false);
+        levelUpPanel.SetActive(true);
+        UpgradeSystemUI.Instance.InstantiateUpgrades();
+    }
+
+    public void HideLevelUpPanel()
+    {
+        Time.timeScale = 1f;
+        waveTextNum.gameObject.SetActive(true);
+        healthTextNum.gameObject.SetActive(true);
+        scoreTextNum.gameObject.SetActive(true);
+        waveText.SetActive(true);
+        scoreText.SetActive(true);
+        healthText.SetActive(true);
+        levelUpPanel.SetActive(false);
     }
 }

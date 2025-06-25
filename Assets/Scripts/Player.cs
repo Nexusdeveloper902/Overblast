@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     public static Player Instance;
     
+    public Transform playerTransform;
     public float speed = 5;
     public int health = 100;
     public float damageToIncrease;
@@ -32,6 +33,8 @@ public class Player : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+        
+        playerTransform = GetComponent<Transform>();
     }
     
     void Update()
@@ -116,6 +119,6 @@ public class Player : MonoBehaviour
         UI.Instance.maxHealth += 10;
         speed += 2;
         UI.Instance.SetHealthInUI(health);
-        UI.Instance.LevelUpPanel();
+        UI.Instance.ShowLevelUpPanel();
     }
 }
