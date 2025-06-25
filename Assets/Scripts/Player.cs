@@ -115,8 +115,8 @@ public class Player : MonoBehaviour
 
     void LevelUp()
     {
-        maxHealth += 10;
-        UI.Instance.maxHealth += 10;
+        maxHealth += 5;
+        UI.Instance.maxHealth += 5;
         speed += 2;
         UI.Instance.SetHealthInUI(health);
         UI.Instance.ShowLevelUpPanel();

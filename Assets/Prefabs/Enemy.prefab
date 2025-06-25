@@ -103,7 +103,7 @@ MonoBehaviour:
   attackRange: 1.5
   moveSpeed: 3
   attackCooldown: 1
-  xpToIncrease: 1
+  xpToIncrease: 10
   health: 30
   damageAmount: 5
 --- !u!61 &6099007281973832129
