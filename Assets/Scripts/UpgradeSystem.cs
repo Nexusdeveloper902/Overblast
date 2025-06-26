@@ -32,4 +32,33 @@ public class UpgradeSystem : MonoBehaviour
         UI.Instance.HideLevelUpPanel();
         UpgradeSystemUI.Instance.DestroyUpgrades();
     }
+
+    public void DamageUpgrade()
+    {
+        Player.Instance.damageToIncrease *= 1.02f;
+        UI.Instance.HideLevelUpPanel();
+        UpgradeSystemUI.Instance.DestroyUpgrades();
+    }
+
+    public void SpeedUpgrade()
+    {
+        Player.Instance.speed *= 1.05f;
+        UI.Instance.HideLevelUpPanel();
+        UpgradeSystemUI.Instance.DestroyUpgrades();
+    }
+
+    public void HealUpgrade()
+    {
+        if (Player.Instance.health < Player.Instance.maxHealth)
+        {
+            Player.Instance.health += 10;
+            if (Player.Instance.health > Player.Instance.maxHealth)
+            {
+                Player.Instance.health = Player.Instance.maxHealth;
+            }
+        }
+        UI.Instance.SetHealthInUI(Player.Instance.health);
+        UI.Instance.HideLevelUpPanel();
+        UpgradeSystemUI.Instance.DestroyUpgrades();
+    }
 }

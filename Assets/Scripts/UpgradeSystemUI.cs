@@ -37,6 +37,18 @@ public class UpgradeSystemUI : MonoBehaviour
             {
                 button.onClick.AddListener(UpgradeSystem.Instance.HealthUpgrade);
             }
+            else if (upgrade.CompareTag("DamageUpgrade"))
+            {
+                button.onClick.AddListener(UpgradeSystem.Instance.DamageUpgrade);
+            }
+            else if (upgrade.CompareTag("SpeedUpgrade"))
+            {
+                button.onClick.AddListener(UpgradeSystem.Instance.SpeedUpgrade);
+            }
+            else if (upgrade.CompareTag("HealUpgrade"))
+            {
+                button.onClick.AddListener(UpgradeSystem.Instance.HealUpgrade);
+            }
         }
     }
 

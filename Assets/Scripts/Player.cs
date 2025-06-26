@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public float speed = 5;
     public int health = 100;
     public float damageToIncrease;
+    private float previousDamage;
+    private float previousSpeed;
     public float xp;
     public float level;
     private float[] xpTable = new float[]
@@ -40,9 +42,13 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movement();
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKey(KeyCode.N) && !godMode)
         {
             godMode = true;
+        }
+        else if (Input.GetKey(KeyCode.N))
+        {
+            godMode = false;
         }
 
         if (godMode)
@@ -79,6 +85,7 @@ public class Player : MonoBehaviour
 
     public void SpeedIncrease(float amount)
     {
+        previousSpeed = speed;
         speed += amount;
         StartCoroutine(SpeedIncreaseTime());
     }
@@ -86,11 +93,12 @@ public class Player : MonoBehaviour
     IEnumerator SpeedIncreaseTime()
     {
         yield return new WaitForSeconds(10f);
-        speed = 5;
+        speed = previousSpeed;
     }
 
     public void DamageIncrease(float amount)
     {
+        previousDamage = damageToIncrease;
         damageToIncrease += amount;
         StartCoroutine(DamageIncreaseTime());
     }
@@ -98,7 +106,7 @@ public class Player : MonoBehaviour
     IEnumerator DamageIncreaseTime()
     {
         yield return new WaitForSeconds(10f);
-        damageToIncrease = 0;
+        damageToIncrease = previousDamage;
     }
 
     public void AddXp(float amount)

@@ -408,7 +408,7 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   speed: 5
   health: 100
-  damageToIncrease: 0
+  damageToIncrease: 1
   xp: 0
   level: 0
   maxHealth: 100
@@ -528,6 +528,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgrades:
   - {fileID: 6127458124877055019, guid: d854005ece35fdcb6b660e2fb2d4e226, type: 3}
+  - {fileID: 6127458124877055019, guid: 2420bf9d61abf8786ad5440b82529ee0, type: 3}
+  - {fileID: 6127458124877055019, guid: f3aea29c059df84e8864d758cf05e497, type: 3}
+  - {fileID: 6127458124877055019, guid: 42ece06ae110e8f68bc7765ceaf6e068, type: 3}
   - {fileID: 6127458124877055019, guid: e72ddb04e20d95d4796b6a133f62f818, type: 3}
 --- !u!1 &468642960
 GameObject:
@@ -1274,6 +1277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoFireWeapon: {fileID: 7470254960116856453, guid: b62d441bdb0d72b4286d2c81070a9842, type: 3}
+  hasAutoFireGun: 0
 --- !u!4 &875674827
 Transform:
   m_ObjectHideFlags: 0
