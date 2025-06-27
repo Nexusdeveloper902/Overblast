@@ -15,15 +15,6 @@ public class Player : MonoBehaviour
     private float previousSpeed;
     public float xp;
     public float level;
-    private float[] xpTable = new float[]
-    {
-        0f,   // Level 0 (not used)
-        10f,  // Level 1
-        25f,  // Level 2
-        45f,  // Level 3
-        70f,  // Level 4
-        100f  // Level 5 (add more if needed)
-    };
     
     public int maxHealth = 100;
 
@@ -114,7 +105,8 @@ public class Player : MonoBehaviour
         xp += amount;
 
         // Check if XP passed the threshold for the next level
-        if (level < xpTable.Length - 1 && xp >= xpTable[(int)level + 1])
+        float xpToNextLevel = GetXpRequiredForLevel(level + 1);
+        if (xp >= xpToNextLevel)
         {
             level++;
             LevelUp();
@@ -129,4 +121,13 @@ public class Player : MonoBehaviour
         UI.Instance.SetHealthInUI(health);
         UI.Instance.ShowLevelUpPanel();
     }
+    
+    float GetXpRequiredForLevel(float targetLevel)
+    {
+        
+        float baseXp = 10f;
+        float growthFactor = 1.3f; // adjust this to balance progression
+        return baseXp * Mathf.Pow(growthFactor, targetLevel - 1);
+    }
+
 }
