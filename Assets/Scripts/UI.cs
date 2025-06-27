@@ -14,6 +14,7 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject waveText;
     [SerializeField] private GameObject healthText;
     [SerializeField] private GameObject levelUpPanel;
+    [SerializeField] private GameObject pauseScreen;
     
     public float maxHealth = 100;
     public static UI Instance;
@@ -30,6 +31,20 @@ public class UI : MonoBehaviour
         player.OnHealthChanged += HandleHealthChanged;
     }
 
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0f;
+        }
+    }
+
+    public void Resume()
+    {
+        pauseScreen.SetActive(false);
+        Time.timeScale = 1f;
+    }
     void OnDestroy()
     {
         player.OnHealthChanged -= HandleHealthChanged;
