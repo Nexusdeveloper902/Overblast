@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour
     public int wave = 1;
     public bool readyForNextWave = false;
     
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject[] enemyPrefabs;
     
     void Awake()
     {
@@ -27,7 +27,8 @@ public class Spawner : MonoBehaviour
     {
             yield return new WaitForSeconds(Random.Range(5f, 10f));
             Vector3 spawnPos = new Vector3(Random.Range(-10f, 10f), Random.Range(-5f, 5f), 0f);
-            Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+            GameObject prefabToSpawn = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+            GameObject e = Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
             enemiesAlive++;
     }
     
