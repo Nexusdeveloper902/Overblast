@@ -8,6 +8,10 @@ public class UpgradeSystemUI : MonoBehaviour
 
     private List<GameObject> spawnedUpgrades = new List<GameObject>();
 
+    private List<GameObject> elegibleUpgrades = new List<GameObject>();
+    
+    private List<GameObject> upgradesToSpawn = new List<GameObject>();
+
     public static UpgradeSystemUI Instance;
 
     void Awake()
@@ -18,12 +22,27 @@ public class UpgradeSystemUI : MonoBehaviour
 
     public void InstantiateUpgrades()
     {
+        elegibleUpgrades.Clear();
+        upgradesToSpawn.Clear();
         foreach (GameObject upgrade in upgrades)
         {
-            
             if (upgrade.CompareTag("AutoFireGun") && UpgradeSystem.Instance.hasAutoFireGun)
+            {
                 continue;
+            }
+            elegibleUpgrades.Add(upgrade);
+        }
+        
+        Shuffle(elegibleUpgrades);
 
+        int count = Mathf.Min(3, elegibleUpgrades.Count);
+        for (var i = 0; i < count; i++)
+        {
+            upgradesToSpawn.Add(elegibleUpgrades[i]);
+        }
+        
+        foreach (GameObject upgrade in upgradesToSpawn)
+        {
             GameObject panel = Instantiate(upgrade, transform);
             spawnedUpgrades.Add(panel);
 
@@ -61,4 +80,15 @@ public class UpgradeSystemUI : MonoBehaviour
 
         spawnedUpgrades.Clear();
     }
+    
+    private static void Shuffle<T>(List<T> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (list[i], list[j]) = (list[j], list[i]);
+        }
+    }
+
+
 }
