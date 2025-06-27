@@ -10,6 +10,7 @@ TagManager:
   - DamageUpgrade
   - SpeedUpgrade
   - HealUpgrade
+  - OrbUpgrade
   layers:
   - Default
   - TransparentFX

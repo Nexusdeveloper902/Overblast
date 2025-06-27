@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.7524675, b: 0, a: 1}
+  m_Color: {r: 0.9974991, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -88,8 +88,8 @@ GameObject:
   - component: {fileID: 6127458124877054998}
   - component: {fileID: 6127458124877055017}
   m_Layer: 5
-  m_Name: SpeedUpgrade
-  m_TagString: SpeedUpgrade
+  m_Name: OrbUpgrade
+  m_TagString: OrbUpgrade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,7 +190,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000020027, y: -10.2}
+  m_AnchoredPosition: {x: -0.000020027, y: -8.7}
   m_SizeDelta: {x: 75.2623, y: 13.3755}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6127458124979415403
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Speed upgrade
+  m_text: Orb Upgrade
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

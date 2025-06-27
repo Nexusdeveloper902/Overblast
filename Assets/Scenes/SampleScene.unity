@@ -532,6 +532,7 @@ MonoBehaviour:
   - {fileID: 6127458124877055019, guid: f3aea29c059df84e8864d758cf05e497, type: 3}
   - {fileID: 6127458124877055019, guid: 42ece06ae110e8f68bc7765ceaf6e068, type: 3}
   - {fileID: 6127458124877055019, guid: e72ddb04e20d95d4796b6a133f62f818, type: 3}
+  - {fileID: 6127458124877055019, guid: 2596e6855a82015a0b98820579ab36a8, type: 3}
 --- !u!1 &468642960
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,7 +1278,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoFireWeapon: {fileID: 7470254960116856453, guid: b62d441bdb0d72b4286d2c81070a9842, type: 3}
+  orbUpgrade: {fileID: 5596262160387035874, guid: 337a64b762828f6a692ed8dcf2f05990, type: 3}
   hasAutoFireGun: 0
+  hasOrbUpgrade: 0
 --- !u!4 &875674827
 Transform:
   m_ObjectHideFlags: 0
@@ -1633,7 +1636,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 147.45007, y: -28.169983}
+  m_AnchoredPosition: {x: 147.45007, y: -28.170044}
   m_SizeDelta: {x: 294.9096, y: 56.336975}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1436472473

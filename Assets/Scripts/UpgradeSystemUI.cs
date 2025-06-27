@@ -30,6 +30,11 @@ public class UpgradeSystemUI : MonoBehaviour
             {
                 continue;
             }
+
+            if (upgrade.CompareTag("OrbUpgrade") && UpgradeSystem.Instance.hasOrbUpgrade)
+            {
+                continue;
+            }
             elegibleUpgrades.Add(upgrade);
         }
         
@@ -67,6 +72,10 @@ public class UpgradeSystemUI : MonoBehaviour
             else if (upgrade.CompareTag("HealUpgrade"))
             {
                 button.onClick.AddListener(UpgradeSystem.Instance.HealUpgrade);
+            }
+            else if (upgrade.CompareTag("OrbUpgrade"))
+            {
+                button.onClick.AddListener(UpgradeSystem.Instance.OrbUpgrade);
             }
         }
     }

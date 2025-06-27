@@ -7,8 +7,10 @@ public class UpgradeSystem : MonoBehaviour
     public static  UpgradeSystem Instance;
 
     [SerializeField] private  GameObject autoFireWeapon;
+    [SerializeField] private  GameObject orbUpgrade;
 
     public bool hasAutoFireGun = false;
+    public bool hasOrbUpgrade = false;
     
     void Awake()
     {
@@ -24,6 +26,14 @@ public class UpgradeSystem : MonoBehaviour
         hasAutoFireGun = true;
     }
 
+    public void OrbUpgrade()
+    {
+        Instantiate(orbUpgrade);
+        UI.Instance.HideLevelUpPanel();
+        UpgradeSystemUI.Instance.DestroyUpgrades();
+        hasOrbUpgrade = true;
+    }
+    
     public void HealthUpgrade()
     {
         UI.Instance.maxHealth += 5;
